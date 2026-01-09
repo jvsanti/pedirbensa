@@ -36,14 +36,14 @@ const HeroSection = () => {
         </div>
 
         <h3 className="font-display text-2xl md:text-3xl tracking-widest text-foreground/90 mb-8">
-          DECRETO SUPREMO
+          LEIA ATENTAMENTE O DECRETO SUPREMO E SOLICITE A SUA BENSA
         </h3>
 
         <a 
           href="#pedir-bencao"
           className="btn-decree inline-block px-8 py-4 rounded-lg font-display text-lg text-primary-foreground uppercase tracking-wider"
         >
-          Pedir a Bênção
+          Pedir a Bensa
         </a>
       </div>
     </section>
