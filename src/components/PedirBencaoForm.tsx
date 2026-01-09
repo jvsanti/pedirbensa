@@ -56,7 +56,7 @@ const PedirBencaoForm = () => {
 
             <div>
               <label className="block font-display text-sm uppercase tracking-wider mb-2 text-foreground/80">
-                Por que mereces a bênção?
+                Por que mereces a bensa?
               </label>
               <textarea
                 value={motivo}
@@ -73,7 +73,7 @@ const PedirBencaoForm = () => {
               disabled={loading}
               className="w-full btn-decree py-4 rounded-lg font-display text-lg text-primary-foreground uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {loading ? 'Enviando súplica...' : 'Implorar pela Bênção'}
+              {loading ? 'Enviando súplica...' : 'Implorar pela Bensa'}
             </button>
           </form>
         </div>
