@@ -4,7 +4,7 @@ const regras = [
   {
     icon: Crown,
     titulo: "Respeite a Hierarquia",
-    descricao: "Teu pai e teu tio são os seres supremos. ADCs e demais criaturas devem se curvar."
+    descricao: "Teu pai e Teu Tio são os seres supremos. ADCs e demais criaturas devem se curvar. Briguem entre vocês."
   },
   {
     icon: Sword,
@@ -14,17 +14,17 @@ const regras = [
   {
     icon: Target,
     titulo: "Foco no Desespero",
-    descricao: "O objetivo é fazer os adversários perderem a vontade de jogar."
+    descricao: "O objetivo é fazer os adversários perderem a vontade de jogar. Mesmo que você esteja 0/10, tilte-os!"
   },
   {
     icon: Shield,
     titulo: "ADC é Sacrificável",
-    descricao: "O ADC existe para sofrer. Não gaste recursos preciosos salvando-o."
+    descricao: "O ADC existe para sofrer. Não gaste recursos preciosos salvando-o. Deixe-os perecer!"
   },
   {
     icon: Skull,
-    titulo: "Domine a Rota",
-    descricao: "Seja top ou support, a rota deve tremer sob sua presença."
+    titulo: "Faça o mínimo",
+    descricao: "Faz o mínimo e cala a boca, o PDL vem."
   }
 ];
 
