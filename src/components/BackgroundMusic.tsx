@@ -44,7 +44,7 @@ const BackgroundMusic = () => {
               Testemunhar o Decreto
             </button>
             <p className="text-muted-foreground/60 text-sm">
-              🔊 Som ativado automaticamente
+              
             </p>
           </div>
         </div>
