@@ -5,10 +5,12 @@ import ListaBencaos from '@/components/ListaBencaos';
 import FAQSection from '@/components/FAQSection';
 import RegrasSection from '@/components/RegrasSection';
 import Footer from '@/components/Footer';
+import BackgroundMusic from '@/components/BackgroundMusic';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <BackgroundMusic />
       <HeroSection />
       <DecretoSection />
       <RegrasSection />
