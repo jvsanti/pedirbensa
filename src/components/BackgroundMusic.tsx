@@ -1,82 +1,89 @@
 import { useEffect, useRef, useState } from 'react';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Play } from 'lucide-react';
 
 const BackgroundMusic = () => {
-  const [isMuted, setIsMuted] = useState(true);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  useEffect(() => {
-    // Detecta qualquer interação do usuário (clique, scroll, tecla)
-    const handleInteraction = () => {
-      if (!hasInteracted) {
-        setHasInteracted(true);
-        setIsMuted(false);
-      }
-    };
-
-    // Adiciona listeners para várias formas de interação
-    window.addEventListener('click', handleInteraction);
-    window.addEventListener('scroll', handleInteraction);
-    window.addEventListener('keydown', handleInteraction);
-    window.addEventListener('touchstart', handleInteraction);
-
-    return () => {
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('scroll', handleInteraction);
-      window.removeEventListener('keydown', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
-    };
-  }, [hasInteracted]);
-
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsMuted(!isMuted);
+  const startMusic = () => {
+    setShowOverlay(false);
+    setIsPlaying(true);
   };
 
-  // URL do YouTube com parâmetros
-  // mute=1 ou mute=0 controla o áudio
-  const youtubeUrl = `https://www.youtube.com/embed/x7jXLAKLCUM?autoplay=1&loop=1&playlist=x7jXLAKLCUM&controls=0&mute=${isMuted ? 1 : 0}&enablejsapi=1`;
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
     <>
-      {/* Botão de controle de áudio */}
-      <div className="fixed bottom-4 right-4 z-50">
-        <button
-          onClick={toggleMute}
-          className="bg-primary/90 hover:bg-primary text-primary-foreground p-3 rounded-full shadow-lg transition-all"
-          title={isMuted ? 'Ativar música' : 'Pausar música'}
+      {/* Overlay que cobre TODA a tela - usuário tem que clicar pra entrar */}
+      {showOverlay && (
+        <div 
+          className="fixed inset-0 z-[9999] bg-background flex flex-col items-center justify-center cursor-pointer"
+          onClick={startMusic}
         >
-          {isMuted ? (
-            <VolumeX className="w-5 h-5" />
-          ) : (
-            <Volume2 className="w-5 h-5" />
-          )}
-        </button>
-        {isMuted && !hasInteracted && (
-          <span className="absolute -top-8 right-0 bg-background/90 text-foreground text-xs px-2 py-1 rounded whitespace-nowrap">
-            Clique para ativar ♪
-          </span>
-        )}
-      </div>
+          <div className="text-center space-y-6 px-4">
+            <h1 className="font-display text-4xl md:text-6xl text-gradient">
+              Decreto dos Burros
+            </h1>
+            <p className="text-muted-foreground font-body text-lg">
+              Prepare-se para receber a sabedoria suprema
+            </p>
+            <button 
+              className="btn-decree px-8 py-4 rounded-lg font-display text-lg text-primary-foreground uppercase tracking-wider flex items-center gap-3 mx-auto"
+            >
+              <Play className="w-6 h-6" />
+              Entrar no Decreto
+            </button>
+            <p className="text-muted-foreground/60 text-sm">
+              🔊 Som ativado automaticamente
+            </p>
+          </div>
+        </div>
+      )}
 
-      {/* Player do YouTube oculto - sempre carregado */}
-      <iframe
-        ref={iframeRef}
-        key={isMuted ? 'muted' : 'unmuted'} // Força reload quando muda mute
-        className="pointer-events-none"
-        width="0"
-        height="0"
-        src={youtubeUrl}
-        title="Background Music"
-        allow="autoplay; encrypted-media"
-        style={{ 
-          position: 'fixed', 
-          left: '-9999px',
-          top: '-9999px',
-          opacity: 0,
-        }}
-      />
+      {/* Botão de controle de áudio (aparece depois de entrar) */}
+      {!showOverlay && (
+        <div className="fixed bottom-4 right-4 z-50">
+          <button
+            onClick={toggleMusic}
+            className="bg-primary/90 hover:bg-primary text-primary-foreground p-3 rounded-full shadow-lg transition-all"
+            title={isPlaying ? 'Pausar música' : 'Tocar música'}
+          >
+            {isPlaying ? (
+              <Volume2 className="w-5 h-5" />
+            ) : (
+              <VolumeX className="w-5 h-5" />
+            )}
+          </button>
+        </div>
+      )}
+
+      {/* Player do YouTube oculto - só toca quando isPlaying é true */}
+      {isPlaying && (
+        <iframe
+          className="pointer-events-none"
+          width="0"
+          height="0"
+          src="https://www.youtube.com/embed/x7jXLAKLCUM?autoplay=1&loop=1&playlist=x7jXLAKLCUM&controls=0"
+          title="Background Music"
+          allow="autoplay; encrypted-media"
+          style={{ 
+            position: 'fixed', 
+            left: '-9999px',
+            top: '-9999px',
+            opacity: 0,
+          }}
+        />
+      )}
     </>
   );
 };
