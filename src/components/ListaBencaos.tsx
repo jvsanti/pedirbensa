@@ -19,7 +19,7 @@ const ListaBencaos = () => {
     <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <h2 className="font-display text-3xl md:text-4xl text-center mb-12">
-          <span className="text-gradient">Registro das Bênçãos</span>
+          <span className="text-gradient">Registro das Bensas</span>
         </h2>
 
         <div className="grid md:grid-cols-2 gap-8">
