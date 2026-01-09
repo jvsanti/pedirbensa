@@ -23,8 +23,8 @@ const regras = [
   },
   {
     icon: Skull,
-    titulo: "Faça o mínimo",
-    descricao: "Faz o mínimo e cala a boca, o PDL vem."
+    titulo: "Não seja BURRO",
+    descricao: "Faça o mínimo e fique quieto. Peça a bensa e aproveite seus PDL's."
   }
 ];
 
@@ -33,10 +33,10 @@ const RegrasSection = () => {
     <section className="py-20 px-4 bg-secondary/30">
       <div className="max-w-5xl mx-auto">
         <h2 className="font-display text-3xl md:text-4xl text-center mb-4">
-          <span className="text-gradient">As Regras Sagradas</span>
+          <span className="text-gradient">Regras Sagradas</span>
         </h2>
         <p className="text-center text-muted-foreground font-body italic mb-12">
-          O que você deve saber para sobreviver
+          Não seja burro!
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
