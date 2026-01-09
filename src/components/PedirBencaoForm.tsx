@@ -33,10 +33,10 @@ const PedirBencaoForm = () => {
       <div className="max-w-2xl mx-auto">
         <div className="card-decree rounded-2xl p-8 md:p-12">
           <h2 className="font-display text-3xl md:text-4xl text-center mb-4">
-            <span className="text-gradient">Pedir a Bênção</span>
+            <span className="text-gradient">Pedir a Bensa</span>
           </h2>
           <p className="text-center text-muted-foreground mb-8 font-body italic">
-            Ajoelhe-se perante a nossa grandiosidade e peça a nossa bênção
+            Ajoelhe-se perante a nossa grandiosidade e peça a nossa bensa
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
