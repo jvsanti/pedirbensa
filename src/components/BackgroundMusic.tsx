@@ -2,21 +2,17 @@ import { useState } from 'react';
 import { Volume2, VolumeX, Play } from 'lucide-react';
 
 const BackgroundMusic = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
   const [showOverlay, setShowOverlay] = useState(true);
+  const [showPlayer, setShowPlayer] = useState(false);
 
   const startMusic = () => {
     setShowOverlay(false);
-    setIsPlaying(true);
+    setShowPlayer(true);
   };
 
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
+  const toggleMusic = () => {
+    setShowPlayer(!showPlayer);
   };
-
-  // URL muda baseado no estado de mute
-  const youtubeUrl = `https://www.youtube.com/embed/x7jXLAKLCUM?autoplay=1&loop=1&playlist=x7jXLAKLCUM&controls=0&mute=${isMuted ? 1 : 0}`;
 
   return (
     <>
@@ -37,10 +33,10 @@ const BackgroundMusic = () => {
               className="btn-decree px-8 py-4 rounded-lg font-display text-lg text-primary-foreground uppercase tracking-wider flex items-center gap-3 mx-auto"
             >
               <Play className="w-6 h-6" />
-              Testemunhe o Decreto
+              Testemunhar o Decreto
             </button>
             <p className="text-muted-foreground/60 text-sm">
-             
+              
             </p>
           </div>
         </div>
@@ -50,27 +46,26 @@ const BackgroundMusic = () => {
       {!showOverlay && (
         <div className="fixed bottom-4 right-4 z-50">
           <button
-            onClick={toggleMute}
+            onClick={toggleMusic}
             className="bg-primary/90 hover:bg-primary text-primary-foreground p-3 rounded-full shadow-lg transition-all"
-            title={isMuted ? 'Ativar música' : 'Mutar música'}
+            title={showPlayer ? 'Pausar música' : 'Tocar música'}
           >
-            {isMuted ? (
-              <VolumeX className="w-5 h-5" />
-            ) : (
+            {showPlayer ? (
               <Volume2 className="w-5 h-5" />
+            ) : (
+              <VolumeX className="w-5 h-5" />
             )}
           </button>
         </div>
       )}
 
-      {/* Player do YouTube oculto - recarrega quando muda o mute */}
-      {isPlaying && (
+      {/* Player do YouTube oculto - só existe quando showPlayer é true */}
+      {showPlayer && (
         <iframe
-          key={isMuted ? 'muted' : 'unmuted'}
           className="pointer-events-none"
           width="0"
           height="0"
-          src={youtubeUrl}
+          src="https://www.youtube.com/embed/x7jXLAKLCUM?autoplay=1&loop=1&playlist=x7jXLAKLCUM&controls=0"
           title="Background Music"
           allow="autoplay; encrypted-media"
           style={{ 
