@@ -32,7 +32,7 @@ const BackgroundMusic = () => {
         >
           <div className="text-center space-y-6 px-4">
             <h1 className="font-display text-4xl md:text-6xl text-gradient">
-              Decreto dos Burros
+              Decreto Supremo
             </h1>
             <p className="text-muted-foreground font-body text-lg">
               Prepare-se para receber a sabedoria suprema
@@ -41,7 +41,7 @@ const BackgroundMusic = () => {
               className="btn-decree px-8 py-4 rounded-lg font-display text-lg text-primary-foreground uppercase tracking-wider flex items-center gap-3 mx-auto"
             >
               <Play className="w-6 h-6" />
-              Entrar no Decreto
+              Testemunhar o Decreto
             </button>
             <p className="text-muted-foreground/60 text-sm">
               🔊 Som ativado automaticamente
