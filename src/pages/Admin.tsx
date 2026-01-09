@@ -43,6 +43,8 @@ const Admin = () => {
   const [editingDecreto, setEditingDecreto] = useState<string | null>(null);
   const [newFaq, setNewFaq] = useState({ pergunta: '', resposta: '' });
   const [showNewFaq, setShowNewFaq] = useState(false);
+  const [newDecreto, setNewDecreto] = useState({ secao: '', titulo: '', conteudo: '' });
+  const [showNewDecreto, setShowNewDecreto] = useState(false);
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
@@ -189,6 +191,38 @@ const Admin = () => {
     } else {
       toast.success('Conteúdo atualizado!');
       setEditingDecreto(null);
+      loadData();
+    }
+  };
+
+  const handleAddDecreto = async () => {
+    if (!newDecreto.secao || !newDecreto.titulo || !newDecreto.conteudo) {
+      toast.error('Preencha todos os campos');
+      return;
+    }
+
+    const { error } = await supabase.from('decreto_conteudo').insert({
+      secao: newDecreto.secao.toLowerCase().replace(/\s+/g, '_'),
+      titulo: newDecreto.titulo,
+      conteudo: newDecreto.conteudo,
+    });
+
+    if (error) {
+      toast.error('Erro ao adicionar seção');
+    } else {
+      toast.success('Seção adicionada!');
+      setNewDecreto({ secao: '', titulo: '', conteudo: '' });
+      setShowNewDecreto(false);
+      loadData();
+    }
+  };
+
+  const handleDeleteDecreto = async (id: string) => {
+    const { error } = await supabase.from('decreto_conteudo').delete().eq('id', id);
+    if (error) {
+      toast.error('Erro ao deletar seção');
+    } else {
+      toast.success('Seção removida');
       loadData();
     }
   };
@@ -437,7 +471,57 @@ const Admin = () => {
 
         {activeTab === 'decreto' && (
           <div className="space-y-4">
-            <h2 className="font-display text-xl">Conteúdo do Decreto</h2>
+            <div className="flex justify-between items-center">
+              <h2 className="font-display text-xl">Conteúdo do Decreto</h2>
+              <button
+                onClick={() => setShowNewDecreto(true)}
+                className="btn-decree px-4 py-2 rounded-lg font-display text-sm flex items-center gap-2 text-primary-foreground"
+              >
+                <Plus className="w-4 h-4" />
+                Adicionar Seção
+              </button>
+            </div>
+
+            {showNewDecreto && (
+              <div className="card-decree rounded-xl p-4 space-y-3">
+                <input
+                  type="text"
+                  value={newDecreto.secao}
+                  onChange={(e) => setNewDecreto({ ...newDecreto, secao: e.target.value })}
+                  placeholder="ID da seção (ex: dica4, paragrafo1)..."
+                  className="w-full bg-secondary border border-border rounded-lg px-4 py-2 font-body text-foreground"
+                />
+                <input
+                  type="text"
+                  value={newDecreto.titulo}
+                  onChange={(e) => setNewDecreto({ ...newDecreto, titulo: e.target.value })}
+                  placeholder="Título da seção..."
+                  className="w-full bg-secondary border border-border rounded-lg px-4 py-2 font-body text-foreground"
+                />
+                <textarea
+                  value={newDecreto.conteudo}
+                  onChange={(e) => setNewDecreto({ ...newDecreto, conteudo: e.target.value })}
+                  placeholder="Conteúdo..."
+                  rows={4}
+                  className="w-full bg-secondary border border-border rounded-lg px-4 py-2 font-body text-foreground resize-none"
+                />
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleAddDecreto}
+                    className="btn-decree px-4 py-2 rounded-lg font-display text-sm text-primary-foreground"
+                  >
+                    Salvar
+                  </button>
+                  <button
+                    onClick={() => setShowNewDecreto(false)}
+                    className="px-4 py-2 rounded-lg font-display text-sm text-muted-foreground"
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            )}
+
             {decretoConteudo.map((item) => (
               <div key={item.id} className="card-decree rounded-xl p-4">
                 {editingDecreto === item.id ? (
@@ -477,12 +561,20 @@ const Admin = () => {
                       <p className="font-display text-foreground">{item.titulo}</p>
                       <p className="text-sm text-muted-foreground font-body mt-1">{item.conteudo}</p>
                     </div>
-                    <button
-                      onClick={() => setEditingDecreto(item.id)}
-                      className="text-muted-foreground hover:text-primary"
-                    >
-                      <Edit2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setEditingDecreto(item.id)}
+                        className="text-muted-foreground hover:text-primary"
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteDecreto(item.id)}
+                        className="text-muted-foreground hover:text-destructive"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
