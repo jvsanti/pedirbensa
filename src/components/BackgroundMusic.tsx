@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Flame, Skull, Crown, Swords } from 'lucide-react';
+import { Volume2, VolumeX, Flame, Bomb, Crown, Swords, Axe } from 'lucide-react';
 import heroBanner from '@/assets/hero-banner.jpg';
 
 // Componente de partículas simplificado para o overlay
@@ -88,9 +88,9 @@ const BackgroundMusic = () => {
             
             {/* Ícones decorativos no topo */}
             <div className="flex justify-center items-center gap-6 mb-4">
-              <Skull className="w-8 h-8 text-primary/60 animate-pulse" />
+              <Axe className="w-8 h-8 text-primary/60 animate-pulse" />
               <Crown className="w-12 h-12 text-primary animate-pulse" style={{ animationDelay: '0.5s' }} />
-              <Skull className="w-8 h-8 text-primary/60 animate-pulse" style={{ animationDelay: '1s' }} />
+              <Bomb className="w-8 h-8 text-primary/60 animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
 
             {/* Subtítulo */}
@@ -138,15 +138,15 @@ const BackgroundMusic = () => {
             {/* Aviso de som */}
             <div className="flex items-center justify-center gap-2 text-muted-foreground/60 text-sm">
               <Volume2 className="w-4 h-4" />
-              <span>BURROS NÃO SERÃO TOLERADOS</span>
+              <span>Burros não serão tolerados!</span>
             </div>
 
             {/* Ícones decorativos embaixo */}
             <div className="flex justify-center items-center gap-8 mt-8 opacity-40">
               <div className="w-16 h-px bg-gradient-to-r from-transparent to-primary/60" />
-              <Skull className="w-6 h-6 text-primary/60" />
+              <Axe className="w-6 h-6 text-primary/60" />
               <Crown className="w-6 h-6 text-primary/60" />
-              <Skull className="w-6 h-6 text-primary/60" />
+              <Bomb className="w-6 h-6 text-primary/60" />
               <div className="w-16 h-px bg-gradient-to-l from-transparent to-primary/60" />
             </div>
           </div>
