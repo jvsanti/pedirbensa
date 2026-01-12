@@ -138,7 +138,7 @@ const BackgroundMusic = () => {
             {/* Aviso de som */}
             <div className="flex items-center justify-center gap-2 text-muted-foreground/60 text-sm">
               <Volume2 className="w-4 h-4" />
-              <span>Som épico ativado automaticamente</span>
+              <span>BURROS NÃO SERÃO TOLERADOS</span>
             </div>
 
             {/* Ícones decorativos embaixo */}
