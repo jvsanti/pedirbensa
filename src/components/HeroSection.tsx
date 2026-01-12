@@ -5,17 +5,21 @@ import FireParticles from './FireParticles';
 const frases = [
   "Nosso desprezo aos BURROS",
   "O ADC morreu? Problema dele.",
-  "Jungle diff é desculpa de burro.",
+  "Tiltar é a desculpa dos BURROS.",
   "Se tá 0/10, a culpa é sua.",
   "Respeite a hierarquia, verme.",
+  "Nosso desprezo aos BURROS",
   "Só os dignos recebem a bensa.",
   "Se for chorar, manda áudio.",
   "FF é coisa de BURRO.",
+  "Nosso desprezo aos BURROS",
   "A culpa é sempre do ADC.",
   "Mute all e joga, burro.",
   "Deu GAP? Chama de BURRO no ALL",
+  "Nosso desprezo aos BURROS",
   "Pedidos de bensa BURROS serão negados.",
   "Teu Pai decide quem vive. Teu tio decide quem morre.",
+  "Nosso desprezo aos BURROS",
   "Tiltar é consequência.",
 ];
 
