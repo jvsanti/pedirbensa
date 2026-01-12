@@ -121,7 +121,7 @@ const BencaoNotifications = () => {
     const initialTimeout = setTimeout(showRandomNotification, 5000);
     
     // Depois mostra a cada 7,5 segundos
-    const interval = setInterval(showRandomNotification, 7500);
+    const interval = setInterval(showRandomNotification, 5000);
 
     return () => {
       clearTimeout(initialTimeout);
