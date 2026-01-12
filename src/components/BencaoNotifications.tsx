@@ -130,35 +130,35 @@ const BencaoNotifications = () => {
   }, [ultimasBencaos]);
 
   return (
-    <div className="fixed bottom-20 left-4 z-40 flex flex-col gap-2 max-w-xs">
+    <div className="fixed bottom-24 left-4 z-40 flex flex-col gap-3 w-80 md:w-96">
       {notificacoes.map((notif) => (
         <div
           key={notif.id}
           className={`
-            flex items-center gap-3 px-4 py-3 rounded-lg shadow-lg
+            flex items-center gap-4 px-5 py-4 rounded-xl shadow-2xl
             transition-all duration-500 ease-out
             ${notif.visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'}
             ${notif.aprovado 
-              ? 'bg-success/20 border border-success/40' 
-              : 'bg-destructive/20 border border-destructive/40'
+              ? 'bg-success/20 border-2 border-success/50' 
+              : 'bg-destructive/20 border-2 border-destructive/50'
             }
           `}
         >
           <div className={`
-            w-8 h-8 rounded-full flex items-center justify-center
+            w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0
             ${notif.aprovado ? 'bg-success/30' : 'bg-destructive/30'}
           `}>
             {notif.aprovado ? (
-              <Check className="w-4 h-4 text-success" />
+              <Check className="w-6 h-6 text-success" />
             ) : (
-              <X className="w-4 h-4 text-destructive" />
+              <X className="w-6 h-6 text-destructive" />
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-display text-foreground truncate">
+            <p className="text-base md:text-lg font-display text-foreground truncate">
               {notif.nome}
             </p>
-            <p className={`text-xs ${notif.aprovado ? 'text-success' : 'text-destructive'}`}>
+            <p className={`text-sm md:text-base font-body ${notif.aprovado ? 'text-success' : 'text-destructive'}`}>
               {notif.aprovado ? 'Recebeu a bensa! 🙏' : 'Indigno da bensa! 💀'}
             </p>
           </div>
